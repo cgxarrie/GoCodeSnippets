@@ -1,0 +1,133 @@
+{
+	// Place your snippets for go here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"Create main": {
+	 	"prefix": "gomain",
+	 	"body": [
+	 		"package main",
+			"",
+			"func main(){",
+			"$0",			
+			"}"
+	 	],
+
+	 	"description": "Create main basic structure"
+	 },
+	 "Test : If expected != got": {
+		"prefix": "testif",
+		"body": [
+			"if expected, got := ${1:expectedValue}, ${2:gotValue}; expected != got {",
+			"   t.Errorf(\"$3. Expected: %v but got: %v\", expected, got)",
+			"}"
+		],
+
+		"description": "Create test if statement to compare expected value versus got values"
+	},
+	"if - else": {
+	   "prefix": "ifel",
+	   "body": [
+		   "if ${1:condition} {",
+		   "   $0",
+		   "} else {",
+		   "}"
+	   ],
+
+	   "description": "Create test if statement to compare expected value versus got values"
+   },
+	"struct": {
+	   "prefix": "struct",
+	   "body": [
+		   "type ${1:name} struct {",
+		   "   $0",
+		   "}"
+	   ],
+
+	   "description": "Create a struct"
+   },
+   "interface": {
+	"prefix": "interface",
+	"body": [
+		"type ${1:name} interface {",
+		"   $0",
+		"}"
+	],
+	"description": "Create an interface"
+	},
+	"fmt.Println": {
+	 "prefix": "pln",
+	 "body": [
+		 "fmt.Println(\"$0\")"
+	 ],
+ 
+	 "description": "Printline with quotation marks "
+	 },
+	"Call method returning error. Return error if not nil": {
+		"prefix": "calle",
+		"body": [
+			"${1:value}, ${2:error} := ${3:expression}",
+			"if $2 != nil {",
+			"	return ${4:valueOnError}, $2",
+			"}",
+			"$0"
+		],
+	
+		"description": "Call method returning error. If error, return it"
+	},
+	"Declare new channel": {
+		"prefix": "mch",
+		"body": [
+			"${1:channelName} := make(chan ${2:channelType})"
+		],
+	
+		"description": "Call method returning error. If error, return new error"
+	},
+	"Wait group waiting for channel": {
+		"prefix": "wgc",
+		"body": [
+			"${1:channelName} := make(chan ${2:channelType})",
+			"${3:waitGroupName} := sync.WaitGroup{}",
+			"",
+			"for ${4:loopCondition} {",
+			"	$3.Add(1)",
+			"	go ${5:goRoutineWritingToChannel}(${6:otherFuncParameters}, $1)",
+			"}",
+			"",
+			"go func() {",
+			"	for ${7:result} := range $1 {",
+			"		${8:functionToDoActionsWithResults} ($7)",
+			"		$3.Done()",
+			"	}",
+			"}()",
+			"",
+			"$3.Wait()",
+			"close($1)"
+		],
+	
+		"description": "WaitGroup that wais for channel to finish receiving data"
+	},
+	"Timer": {
+		"prefix": "tmr",
+		"body": [
+			"${1:start} := time.Now()",
+			"",
+			"$0",
+			"",
+			"${2:elapsed} := time.Since($1)",
+
+		],
+	
+		"description": "Call method returning error. If error, return new error"
+	}
+}
